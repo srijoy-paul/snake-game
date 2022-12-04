@@ -6,12 +6,16 @@ const foodSound= new Audio("../music/food.mp3");
 const gameOverSound= new Audio("../music/gameover.mp3");
 const moveSound= new Audio("../music/move.mp3");
 const musicSound= new Audio("../music/music.mp3");
-let speed=2;
+let speed=3;
 let lastPaintTime=0;
 let score=0;
 let snakeArr=[
     {x:12,y:14},
 ];
+if(localStorage.getItem("hiScore")==null){
+
+    localStorage.setItem("hiScore","0");
+}
 
 // Game functions
 
@@ -26,11 +30,21 @@ function main(ctime){ //event loop
     gameEngine();
 }
 
-function isCollide(){
-    return false;
+function isCollide(snakeArr){
+    for(let i=2;i<snakeArr.length;i++){
+    if(snakeArr[i].x==snakeArr[0].x && snakeArr[i].y==snakeArr[0].y)
+    return true;
+    }
+    if(snakeArr[0].x<=0 || snakeArr[0].x>=18 || snakeArr[0].y<=0 || snakeArr[0].y>=18){
+
+        return true;
+    }
 }
 
 function gameEngine(){
+    // console.log(localStorage.getItem("hiScore"));
+    document.querySelector("#score>span").innerHTML=score;
+    document.querySelector("#hiscore>span").innerHTML=localStorage.getItem("hiScore");
     //update snake and food
 
     // if snake collides
@@ -41,13 +55,16 @@ function gameEngine(){
     direction={x:0,y:0};
     alert("Game over, Press any key to play again!");
     snakeArr=[{x:13,y:15}];
-    musicSound.play();
     score=0;
 }
 
     // if snake eat the food,increment score and regenerate food
     if(snakeArr[0].x==food.x && snakeArr[0].y==food.y){
+        foodSound.play();
         score++;
+        if(score> parseInt(localStorage.getItem("hiScore"))){
+            localStorage.setItem("hiScore",JSON.stringify(score));
+        }
         snakeArr.unshift({x:snakeArr[0].x+direction.x,y:snakeArr[0].y+direction.y});
         a=2;
         b=16;
@@ -93,25 +110,31 @@ function gameEngine(){
 
 
 // Game Logic
+
+// console.log( parseInt(localStorage.getItem("hiScore")));
 window.requestAnimationFrame(main); //game loop
 
 document.addEventListener("keydown",(e)=>{
+    musicSound.play();
     direction={x:0,y:1};
-    moveSound.play();
     switch(e.key){
         case "ArrowUp":
+            moveSound.play();
             console.log("Arrowup");
             direction={x:0,y:-1};            
             break;
         case "ArrowDown":
+            moveSound.play();
             console.log("Arrowdown");
             direction={x:0,y:1}
             break;
         case "ArrowLeft":
+            moveSound.play();
             console.log("Arrowleft");
             direction={x:-1,y:0}
             break;
         case "ArrowRight":
+            moveSound.play();
             console.log("Arrowright");
             direction={x:1,y:0}
             break;

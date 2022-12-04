@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -15,6 +17,27 @@
     align-items: center;
 }
 
+#scoreBoard{
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    background-color: papayawhip;
+    padding: 10px 20px;
+    font-family: 'Zen Dots', cursive;
+    display:flex;
+    flex-direction: column;
+    /* gap: 10px; */
+}
+
+#score{
+    padding: 5px;
+}
+
+#hiscore{
+    border-top: 2px solid #666;
+    padding: 5px;
+}
+
 #board{
     width: 40vw;
     height: 85vh;
@@ -27,11 +50,18 @@
 }
 
 .head{
-    background-color: rgb(207, 89, 89);
+    background:linear-gradient(red,yellow);
+    border: 2px solid #000;
+    border-radius: 12px;
+    transform: scale(1.02);
 }
 .snakeBody{
-    background-color: #4dcb70;
+    background: linear-gradient(green,#333);
+    border: 2px solid whitesmoke;
+    border-radius: 15px;
 }
 .food{
-    background-color: goldenrod;
+    background: linear-gradient(red, purple);
+    border: 2px solid #000;
+    border-radius: 12px;
 }
