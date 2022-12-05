@@ -65,3 +65,61 @@
     border: 2px solid #000;
     border-radius: 12px;
 }
+
+@media (max-width:565px){
+
+    .body{
+    background-size: contain;
+    background-position: bottom right;
+    background-repeat: repeat-y;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    }
+
+    #board{
+        width: 60vw;
+        height: 85vh;
+    }
+
+    #scoreBoard{
+        position: absolute;
+        top: 5%;
+        right: 0;
+        background-color: papayawhip;
+        padding: 10px 20px;
+        font-family: 'Zen Dots', cursive;
+        display:flex;
+        flex-direction: column;
+        /* gap: 10px; */
+    }
+}
+@media (max-width:400px){
+
+    .body{
+    background-size: contain;
+    background-position: bottom right;
+    background-repeat: repeat-y;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(#88A702,#80A100,#7FA103);
+    }
+
+    #board{
+        width: 90vw;
+        height: 85vh;
+    }
+
+    #scoreBoard{
+        position: absolute;
+        top: 0%;
+        right: 28%;
+        background-color: papayawhip;
+        padding: 10px 20px;
+        font-family: 'Zen Dots', cursive;
+        display:flex;
+        flex-direction: column;
+        /* gap: 10px; */
+    }
+}

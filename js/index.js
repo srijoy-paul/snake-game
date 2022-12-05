@@ -19,11 +19,12 @@ if(localStorage.getItem("hiScore")==null){
 
 // Game functions
 
-function main(ctime){ //event loop
+function main(ctime){ //game loop
     window.requestAnimationFrame(main);
     // let time= new Date(ctime);
     // console.log();
     if((ctime-lastPaintTime)/1000 < 1/speed){
+    // console.log(ctime/1000); 
         return;
     }
     lastPaintTime=ctime;
@@ -45,6 +46,7 @@ function gameEngine(){
     // console.log(localStorage.getItem("hiScore"));
     document.querySelector("#score>span").innerHTML=score;
     document.querySelector("#hiscore>span").innerHTML=localStorage.getItem("hiScore");
+
     //update snake and food
 
     // if snake collides
@@ -65,6 +67,12 @@ function gameEngine(){
         if(score> parseInt(localStorage.getItem("hiScore"))){
             localStorage.setItem("hiScore",JSON.stringify(score));
         }
+
+        if(score>=15)speed=5;
+        if(score>=25)speed=9;
+        if(score>=30)speed=13;
+        if(score>=40)speed=15;
+
         snakeArr.unshift({x:snakeArr[0].x+direction.x,y:snakeArr[0].y+direction.y});
         a=2;
         b=16;
@@ -120,22 +128,18 @@ document.addEventListener("keydown",(e)=>{
     switch(e.key){
         case "ArrowUp":
             moveSound.play();
-            console.log("Arrowup");
             direction={x:0,y:-1};            
             break;
         case "ArrowDown":
             moveSound.play();
-            console.log("Arrowdown");
             direction={x:0,y:1}
             break;
         case "ArrowLeft":
             moveSound.play();
-            console.log("Arrowleft");
             direction={x:-1,y:0}
             break;
         case "ArrowRight":
             moveSound.play();
-            console.log("Arrowright");
             direction={x:1,y:0}
             break;
     }
